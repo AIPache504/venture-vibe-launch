@@ -65,9 +65,9 @@ const Index = () => {
             className="flex flex-col items-center gap-2 group"
           >
             <Avatar className="w-16 h-16 transition-transform group-hover:scale-105">
-              <AvatarImage src="/lovable-uploads/d2e3a4ee-831f-45e5-ab82-9e90de9a5ec0.png" alt="Max Middendorf" />
+              <AvatarImage src="/lovable-uploads/d2e3a4ee-831f-45e5-ab82-9e90de9a5ec0.png" alt="Max Derpa" />
             </Avatar>
-            <span className="text-sm text-mayNavy group-hover:text-mayPink transition-colors">Max Middendorf</span>
+            <span className="text-sm text-mayNavy group-hover:text-mayPink transition-colors">Max Derpa</span>
           </a>
         </div>
       </div>
