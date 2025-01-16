@@ -11,6 +11,7 @@ type Translations = {
     emailPlaceholder: string;
     toastTitle: string;
     toastDescription: string;
+    imprint: string;
   };
 };
 
@@ -23,6 +24,7 @@ const translations: Translations = {
     emailPlaceholder: "Enter your email",
     toastTitle: "Thanks for your interest!",
     toastDescription: "We'll keep you updated on our progress.",
+    imprint: "Imprint"
   },
   de: {
     title: "MAY VENTURES",
@@ -32,6 +34,7 @@ const translations: Translations = {
     emailPlaceholder: "E-Mail eingeben",
     toastTitle: "Danke für Ihr Interesse!",
     toastDescription: "Wir halten Sie über unseren Fortschritt auf dem Laufenden.",
+    imprint: "Impressum"
   },
 };
 
