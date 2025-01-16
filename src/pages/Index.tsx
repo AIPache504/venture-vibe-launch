@@ -4,6 +4,7 @@ import { EmailSignup } from '@/components/EmailSignup';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Linkedin } from 'lucide-react';
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const Index = () => {
   const { t } = useLanguage();
@@ -12,7 +13,9 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-white to-mayGray flex flex-col items-center justify-center p-4">
       <LanguageSwitcher />
       <div className="max-w-4xl w-full mx-auto text-center animate-fadeIn">
-        <Logo />
+        <div className="flex justify-center mb-8">
+          <Logo />
+        </div>
         
         <h1 className="text-4xl md:text-6xl font-bold text-mayNavy mt-8 mb-4">
           {t('title')}
@@ -38,8 +41,34 @@ const Index = () => {
           <span>Follow us on LinkedIn</span>
         </a>
         
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-8">
           <EmailSignup />
+        </div>
+
+        <div className="flex justify-center gap-8 mt-12">
+          <a 
+            href="https://www.linkedin.com/in/dominik-lohle/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex flex-col items-center gap-2 group"
+          >
+            <Avatar className="w-16 h-16 transition-transform group-hover:scale-105">
+              <AvatarImage src="/lovable-uploads/5068b6fb-b75e-4a10-b87e-07a7961bbd79.png" alt="Dominik Lohle" />
+            </Avatar>
+            <span className="text-sm text-mayNavy group-hover:text-mayPink transition-colors">Dominik Lohle</span>
+          </a>
+
+          <a 
+            href="https://www.linkedin.com/in/vcmax/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex flex-col items-center gap-2 group"
+          >
+            <Avatar className="w-16 h-16 transition-transform group-hover:scale-105">
+              <AvatarImage src="/lovable-uploads/d2e3a4ee-831f-45e5-ab82-9e90de9a5ec0.png" alt="Max Middendorf" />
+            </Avatar>
+            <span className="text-sm text-mayNavy group-hover:text-mayPink transition-colors">Max Middendorf</span>
+          </a>
         </div>
       </div>
     </div>
