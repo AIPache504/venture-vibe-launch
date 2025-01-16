@@ -5,6 +5,7 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Linkedin } from 'lucide-react';
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Imprint } from '@/components/Imprint';
 
 const Index = () => {
   const { t } = useLanguage();
@@ -70,6 +71,8 @@ const Index = () => {
             <span className="text-sm text-mayNavy group-hover:text-mayPink transition-colors">Max Derpa</span>
           </a>
         </div>
+
+        <Imprint />
       </div>
     </div>
   );
