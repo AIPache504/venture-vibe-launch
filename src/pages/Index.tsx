@@ -5,7 +5,7 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Linkedin } from 'lucide-react';
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Imprint } from '@/components/Imprint';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const { t } = useLanguage();
@@ -72,7 +72,14 @@ const Index = () => {
           </a>
         </div>
 
-        <Imprint />
+        <div className="text-sm text-mayNavy/60 text-center mt-8">
+          <Link 
+            to="/imprint" 
+            className="hover:text-mayPink transition-colors"
+          >
+            {t('imprint')}
+          </Link>
+        </div>
       </div>
     </div>
   );
