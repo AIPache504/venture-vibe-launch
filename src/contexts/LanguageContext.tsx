@@ -28,7 +28,7 @@ const translations: Translations = {
   },
   de: {
     title: "MAY VENTURES",
-    subtitle: "WIR INVESTIEREN IN ZUKÜNFTIGE TECHNOLOGIEFÜHRER AUS UNSERER HEIMATREGION",
+    subtitle: "Wir investieren in zukünftige Technologieführer aus unserer Heimatregion",
     stayTuned: "Jedes Unternehmen und jedes Projekt fängt klein an. Etwas Aufregendes ist in Arbeit. Stay tuned.",
     notifyMe: "Benachrichtigen",
     emailPlaceholder: "E-Mail eingeben",
