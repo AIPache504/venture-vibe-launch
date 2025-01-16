@@ -5,12 +5,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Linkedin } from 'lucide-react';
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Link } from 'react-router-dom';
+import { FallingSignets } from '@/components/FallingSignets';
 
 const Index = () => {
   const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-mayGray flex flex-col items-center justify-center p-4">
+      <FallingSignets />
       <LanguageSwitcher />
       <div className="max-w-4xl w-full mx-auto text-center animate-fadeIn">
         <div className="flex justify-center mb-8">
