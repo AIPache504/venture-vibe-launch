@@ -17,8 +17,8 @@ type Translations = {
 const translations: Translations = {
   en: {
     title: "MAY VENTURES",
-    subtitle: "Empowering the next generation of groundbreaking startups.",
-    stayTuned: "Something exciting is in the works. Stay tuned for updates.",
+    subtitle: "We invest in future technology leaders from our home region.",
+    stayTuned: "Every business and every project starts small. Something exciting is in the works. Stay tuned for updates.",
     notifyMe: "Notify Me",
     emailPlaceholder: "Enter your email",
     toastTitle: "Thanks for your interest!",
@@ -26,8 +26,8 @@ const translations: Translations = {
   },
   de: {
     title: "MAY VENTURES",
-    subtitle: "Wir unterstützen die nächste Generation bahnbrechender Startups.",
-    stayTuned: "Etwas Aufregendes ist in Arbeit. Bleiben Sie auf dem Laufenden.",
+    subtitle: "WIR INVESTIEREN IN ZUKÜNFTIGE TECHNOLOGIEFÜHRER AUS UNSERER HEIMATREGION",
+    stayTuned: "Jedes Unternehmen und jedes Projekt fängt klein an. Etwas Aufregendes ist in Arbeit. Bleiben Sie auf dem Laufenden.",
     notifyMe: "Benachrichtigen",
     emailPlaceholder: "E-Mail eingeben",
     toastTitle: "Danke für Ihr Interesse!",
