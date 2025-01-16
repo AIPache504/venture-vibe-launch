@@ -1,6 +1,5 @@
 import React from 'react';
 import { Logo } from '@/components/Logo';
-import { EmailSignup } from '@/components/EmailSignup';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Linkedin } from 'lucide-react';
@@ -41,10 +40,6 @@ const Index = () => {
           <Linkedin className="w-5 h-5" />
           <span>Follow us on LinkedIn</span>
         </a>
-        
-        <div className="flex justify-center mb-8">
-          <EmailSignup />
-        </div>
 
         <div className="flex justify-center gap-8 mt-12">
           <a 
