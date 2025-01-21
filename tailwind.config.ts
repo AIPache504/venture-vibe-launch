@@ -83,7 +83,8 @@ export default {
         },
         grow: {
           "0%": { transform: "scale(0)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(2)", opacity: "0.7" },
+          "100%": { transform: "scale(3.5)", opacity: "1" },
         },
       },
       animation: {
@@ -91,8 +92,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         fadeIn: "fadeIn 1s ease-out",
         pulse: "pulse 3s infinite",
-        fall: "fall 10s linear infinite",
-        grow: "grow 0.5s ease-out forwards",
+        fall: "fall 6s linear infinite",
+        grow: "grow 3s ease-out forwards",
       },
     },
   },
