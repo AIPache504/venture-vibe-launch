@@ -77,41 +77,9 @@ export default {
           "50%": { transform: "scale(1.05)" },
         },
         fall: {
-          "0%": { 
-            transform: "translate3d(0, -10vh, 0) rotate(0deg)",
-            opacity: "0.1"
-          },
-          "10%": { 
-            transform: "translate3d(0, 10vh, 0) rotate(36deg)",
-            opacity: "0.2" 
-          },
-          "25%": { 
-            transform: "translate3d(0, 30vh, 0) rotate(90deg)",
-            opacity: "0.25" 
-          },
-          "50%": { 
-            transform: "translate3d(0, 50vh, 0) rotate(180deg)",
-            opacity: "0.3" 
-          },
-          "75%": { 
-            transform: "translate3d(0, 75vh, 0) rotate(270deg)",
-            opacity: "0.25" 
-          },
-          "90%": { 
-            transform: "translate3d(0, 90vh, 0) rotate(324deg)",
-            opacity: "0.2" 
-          },
-          "100%": { 
-            transform: "translate3d(0, 100vh, 0) rotate(360deg)",
-            opacity: "0.1"
-          }
-        },
-        grow: {
-          "0%": { transform: "scale(0)", opacity: "0" },
-          "25%": { transform: "scale(1.5)", opacity: "0.25" },
-          "50%": { transform: "scale(2)", opacity: "0.5" },
-          "75%": { transform: "scale(3)", opacity: "0.75" },
-          "100%": { transform: "scale(4)", opacity: "1" },
+          "0%": { transform: "translateY(-10vh) rotate(0deg)", opacity: "0" },
+          "50%": { opacity: "0.5" },
+          "100%": { transform: "translateY(100vh) rotate(360deg)", opacity: "0" },
         },
       },
       animation: {
@@ -120,7 +88,6 @@ export default {
         fadeIn: "fadeIn 1s ease-out",
         pulse: "pulse 3s infinite",
         fall: "fall 10s linear infinite",
-        grow: "grow 20s ease-out forwards",
       },
     },
   },
