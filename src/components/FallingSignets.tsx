@@ -6,28 +6,33 @@ interface Plant {
   left: string;
 }
 
-const MAX_PLANTS = 6; // Maximale Anzahl an Pflanzen
-const CENTER_EXCLUSION_ZONE = 25; // Prozent der Breite, die in der Mitte ausgespart wird
-const PLANT_WIDTH = 8; // Breite einer Pflanze in Viewport-Einheiten
+const MAX_PLANTS = 6;
+const CENTER_EXCLUSION_ZONE = 25;
+const PLANT_WIDTH = 8;
 
 const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: string; onReachBottom: (left: string) => void }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onReachBottom(left);
-    }, delay * 1000 + 10000); // 10 seconds is the fall animation duration
+    }, delay * 1000 + 10000);
 
     return () => clearTimeout(timer);
   }, [delay, left, onReachBottom]);
 
   return (
     <div
-      className="absolute animate-fall will-change-transform"
+      className="absolute animate-fall"
       style={{
         left,
         animationDelay: `${delay}s`,
         top: '-50px',
+        transform: 'translate3d(0, 0, 0)',
         backfaceVisibility: 'hidden',
-        transform: 'translateZ(0)',
+        perspective: 1000,
+        WebkitPerspective: 1000,
+        WebkitBackfaceVisibility: 'hidden',
+        WebkitTransform: 'translate3d(0, 0, 0)',
+        WebkitTransformStyle: 'preserve-3d',
       }}
     >
       <img
@@ -35,8 +40,13 @@ const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: st
         alt=""
         className="w-8 h-8 md:w-12 md:h-12"
         style={{
-          willChange: 'transform',
+          transform: 'translate3d(0, 0, 0)',
           backfaceVisibility: 'hidden',
+          perspective: 1000,
+          WebkitPerspective: 1000,
+          WebkitBackfaceVisibility: 'hidden',
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          WebkitTransformStyle: 'preserve-3d',
         }}
       />
     </div>
@@ -46,11 +56,16 @@ const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: st
 const Plant = ({ left }: { left: string }) => {
   return (
     <div
-      className="absolute bottom-0 animate-grow text-mayPink will-change-transform"
+      className="absolute bottom-0 animate-grow text-mayPink"
       style={{ 
         left,
+        transform: 'translate3d(0, 0, 0)',
         backfaceVisibility: 'hidden',
-        transform: 'translateZ(0)',
+        perspective: 1000,
+        WebkitPerspective: 1000,
+        WebkitBackfaceVisibility: 'hidden',
+        WebkitTransform: 'translate3d(0, 0, 0)',
+        WebkitTransformStyle: 'preserve-3d',
       }}
     >
       <Sprout className="w-6 h-6 md:w-8 md:h-8" />

@@ -78,14 +78,31 @@ export default {
         },
         fall: {
           "0%": { 
-            transform: "translateY(-10vh) rotate(0deg)",
+            transform: "translate3d(0, -10vh, 0) rotate(0deg)",
             opacity: "0.1"
           },
-          "10%": { opacity: "0.2" },
-          "50%": { opacity: "0.3" },
-          "90%": { opacity: "0.2" },
+          "10%": { 
+            transform: "translate3d(0, 10vh, 0) rotate(36deg)",
+            opacity: "0.2" 
+          },
+          "25%": { 
+            transform: "translate3d(0, 30vh, 0) rotate(90deg)",
+            opacity: "0.25" 
+          },
+          "50%": { 
+            transform: "translate3d(0, 50vh, 0) rotate(180deg)",
+            opacity: "0.3" 
+          },
+          "75%": { 
+            transform: "translate3d(0, 75vh, 0) rotate(270deg)",
+            opacity: "0.25" 
+          },
+          "90%": { 
+            transform: "translate3d(0, 90vh, 0) rotate(324deg)",
+            opacity: "0.2" 
+          },
           "100%": { 
-            transform: "translateY(100vh) rotate(360deg)",
+            transform: "translate3d(0, 100vh, 0) rotate(360deg)",
             opacity: "0.1"
           }
         },
