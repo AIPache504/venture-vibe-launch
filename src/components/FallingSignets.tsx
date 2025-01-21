@@ -6,6 +6,9 @@ interface Plant {
   left: string;
 }
 
+const MAX_PLANTS = 15; // Maximale Anzahl an Pflanzen
+const CENTER_EXCLUSION_ZONE = 40; // Prozent der Breite, die in der Mitte ausgespart wird
+
 const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: string; onReachBottom: (left: string) => void }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,7 +51,22 @@ export const FallingSignets = () => {
   const [plants, setPlants] = useState<Plant[]>([]);
 
   const handleSignetReachBottom = (left: string) => {
-    setPlants(prev => [...prev, { id: Date.now(), left }]);
+    const leftValue = parseFloat(left);
+    
+    // Prüfe, ob die Position in der ausgeschlossenen Mittelzone liegt
+    const centerStart = (100 - CENTER_EXCLUSION_ZONE) / 2;
+    const centerEnd = centerStart + CENTER_EXCLUSION_ZONE;
+    
+    if (leftValue >= centerStart && leftValue <= centerEnd) {
+      return; // Keine Pflanze in der Mitte erstellen
+    }
+
+    setPlants(prev => {
+      if (prev.length >= MAX_PLANTS) {
+        return prev; // Maximale Anzahl erreicht
+      }
+      return [...prev, { id: Date.now(), left }];
+    });
   };
 
   return (
