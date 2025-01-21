@@ -10,7 +10,7 @@ const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: st
   useEffect(() => {
     const timer = setTimeout(() => {
       onReachBottom(left);
-    }, delay * 1000 + 6000); // 6 seconds is the new fall animation duration
+    }, delay * 1000 + 10000); // 10 seconds is the fall animation duration
 
     return () => clearTimeout(timer);
   }, [delay, left, onReachBottom]);
@@ -56,7 +56,7 @@ export const FallingSignets = () => {
       {Array.from({ length: 30 }).map((_, i) => (
         <FallingSignet
           key={i}
-          delay={Math.random() * 10} // Reduced delay range
+          delay={Math.random() * 20}
           left={`${Math.random() * 100}%`}
           onReachBottom={handleSignetReachBottom}
         />
