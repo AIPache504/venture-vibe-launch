@@ -21,17 +21,23 @@ const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: st
 
   return (
     <div
-      className="absolute animate-fall opacity-10"
+      className="absolute animate-fall will-change-transform"
       style={{
         left,
         animationDelay: `${delay}s`,
         top: '-50px',
+        backfaceVisibility: 'hidden',
+        transform: 'translateZ(0)',
       }}
     >
       <img
         src="/lovable-uploads/1a975ed3-dd21-4670-bff8-9cd48991c33e.png"
         alt=""
         className="w-8 h-8 md:w-12 md:h-12"
+        style={{
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+        }}
       />
     </div>
   );
@@ -40,8 +46,12 @@ const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: st
 const Plant = ({ left }: { left: string }) => {
   return (
     <div
-      className="absolute bottom-0 animate-grow text-mayPink"
-      style={{ left }}
+      className="absolute bottom-0 animate-grow text-mayPink will-change-transform"
+      style={{ 
+        left,
+        backfaceVisibility: 'hidden',
+        transform: 'translateZ(0)',
+      }}
     >
       <Sprout className="w-6 h-6 md:w-8 md:h-8" />
     </div>
@@ -52,33 +62,30 @@ export const FallingSignets = () => {
   const [plants, setPlants] = useState<Plant[]>([]);
 
   const isPositionOccupied = (newLeft: number) => {
-    // Prüfe für jede existierende Pflanze, ob die neue Position zu nahe ist
     return plants.some(plant => {
       const existingLeft = parseFloat(plant.left);
       const distance = Math.abs(existingLeft - newLeft);
-      return distance < PLANT_WIDTH; // Mindestabstand zwischen Pflanzen
+      return distance < PLANT_WIDTH;
     });
   };
 
   const handleSignetReachBottom = (left: string) => {
     const leftValue = parseFloat(left);
     
-    // Prüfe, ob die Position in der ausgeschlossenen Mittelzone liegt
     const centerStart = (100 - CENTER_EXCLUSION_ZONE) / 2;
     const centerEnd = centerStart + CENTER_EXCLUSION_ZONE;
     
     if (leftValue >= centerStart && leftValue <= centerEnd) {
-      return; // Keine Pflanze in der Mitte erstellen
+      return;
     }
 
-    // Prüfe, ob die Position bereits belegt ist
     if (isPositionOccupied(leftValue)) {
-      return; // Position ist bereits belegt
+      return;
     }
 
     setPlants(prev => {
       if (prev.length >= MAX_PLANTS) {
-        return prev; // Maximale Anzahl erreicht
+        return prev;
       }
       return [...prev, { id: Date.now(), left }];
     });

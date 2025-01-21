@@ -77,9 +77,17 @@ export default {
           "50%": { transform: "scale(1.05)" },
         },
         fall: {
-          "0%": { transform: "translateY(-10vh) rotate(0deg)", opacity: "0" },
-          "50%": { opacity: "0.5" },
-          "100%": { transform: "translateY(100vh) rotate(360deg)", opacity: "0" },
+          "0%": { 
+            transform: "translateY(-10vh) rotate(0deg)",
+            opacity: "0.1"
+          },
+          "10%": { opacity: "0.2" },
+          "50%": { opacity: "0.3" },
+          "90%": { opacity: "0.2" },
+          "100%": { 
+            transform: "translateY(100vh) rotate(360deg)",
+            opacity: "0.1"
+          }
         },
         grow: {
           "0%": { transform: "scale(0)", opacity: "0" },
