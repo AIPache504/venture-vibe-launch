@@ -95,7 +95,7 @@ export default {
         fadeIn: "fadeIn 1s ease-out",
         pulse: "pulse 3s infinite",
         fall: "fall 10s linear infinite",
-        grow: "grow 30s ease-out forwards",
+        grow: "grow 20s ease-out forwards",
       },
     },
   },

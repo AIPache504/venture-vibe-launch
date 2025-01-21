@@ -6,8 +6,8 @@ interface Plant {
   left: string;
 }
 
-const MAX_PLANTS = 15; // Maximale Anzahl an Pflanzen
-const CENTER_EXCLUSION_ZONE = 40; // Prozent der Breite, die in der Mitte ausgespart wird
+const MAX_PLANTS = 10; // Maximale Anzahl an Pflanzen
+const CENTER_EXCLUSION_ZONE = 25; // Prozent der Breite, die in der Mitte ausgespart wird
 
 const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: string; onReachBottom: (left: string) => void }) => {
   useEffect(() => {
