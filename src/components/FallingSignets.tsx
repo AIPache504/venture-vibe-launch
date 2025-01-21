@@ -6,7 +6,7 @@ interface Plant {
   left: string;
 }
 
-const MAX_PLANTS = 10; // Maximale Anzahl an Pflanzen
+const MAX_PLANTS = 6; // Maximale Anzahl an Pflanzen
 const CENTER_EXCLUSION_ZONE = 25; // Prozent der Breite, die in der Mitte ausgespart wird
 const PLANT_WIDTH = 8; // Breite einer Pflanze in Viewport-Einheiten
 
