@@ -81,6 +81,10 @@ export default {
           "50%": { opacity: "0.5" },
           "100%": { transform: "translateY(100vh) rotate(360deg)", opacity: "0" },
         },
+        grow: {
+          "0%": { transform: "scale(0)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -88,6 +92,7 @@ export default {
         fadeIn: "fadeIn 1s ease-out",
         pulse: "pulse 3s infinite",
         fall: "fall 10s linear infinite",
+        grow: "grow 0.5s ease-out forwards",
       },
     },
   },

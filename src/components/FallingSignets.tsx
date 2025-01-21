@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Sprout } from 'lucide-react';
 
-const FallingSignet = ({ delay, left }: { delay: number; left: string }) => {
+interface Plant {
+  id: number;
+  left: string;
+}
+
+const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: string; onReachBottom: (left: string) => void }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onReachBottom(left);
+    }, delay * 1000 + 10000); // 10 seconds is the fall animation duration
+
+    return () => clearTimeout(timer);
+  }, [delay, left, onReachBottom]);
+
   return (
     <div
       className="absolute animate-fall opacity-10"
@@ -19,7 +33,24 @@ const FallingSignet = ({ delay, left }: { delay: number; left: string }) => {
   );
 };
 
+const Plant = ({ left }: { left: string }) => {
+  return (
+    <div
+      className="absolute bottom-0 animate-grow text-mayPink"
+      style={{ left }}
+    >
+      <Sprout className="w-6 h-6 md:w-8 md:h-8" />
+    </div>
+  );
+};
+
 export const FallingSignets = () => {
+  const [plants, setPlants] = useState<Plant[]>([]);
+
+  const handleSignetReachBottom = (left: string) => {
+    setPlants(prev => [...prev, { id: Date.now(), left }]);
+  };
+
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
       {Array.from({ length: 20 }).map((_, i) => (
@@ -27,7 +58,11 @@ export const FallingSignets = () => {
           key={i}
           delay={Math.random() * 20}
           left={`${Math.random() * 100}%`}
+          onReachBottom={handleSignetReachBottom}
         />
+      ))}
+      {plants.map(plant => (
+        <Plant key={plant.id} left={plant.left} />
       ))}
     </div>
   );
