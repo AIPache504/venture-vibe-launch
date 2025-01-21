@@ -8,6 +8,7 @@ interface Plant {
 
 const MAX_PLANTS = 10; // Maximale Anzahl an Pflanzen
 const CENTER_EXCLUSION_ZONE = 25; // Prozent der Breite, die in der Mitte ausgespart wird
+const PLANT_WIDTH = 8; // Breite einer Pflanze in Viewport-Einheiten
 
 const FallingSignet = ({ delay, left, onReachBottom }: { delay: number; left: string; onReachBottom: (left: string) => void }) => {
   useEffect(() => {
@@ -50,6 +51,15 @@ const Plant = ({ left }: { left: string }) => {
 export const FallingSignets = () => {
   const [plants, setPlants] = useState<Plant[]>([]);
 
+  const isPositionOccupied = (newLeft: number) => {
+    // Prüfe für jede existierende Pflanze, ob die neue Position zu nahe ist
+    return plants.some(plant => {
+      const existingLeft = parseFloat(plant.left);
+      const distance = Math.abs(existingLeft - newLeft);
+      return distance < PLANT_WIDTH; // Mindestabstand zwischen Pflanzen
+    });
+  };
+
   const handleSignetReachBottom = (left: string) => {
     const leftValue = parseFloat(left);
     
@@ -59,6 +69,11 @@ export const FallingSignets = () => {
     
     if (leftValue >= centerStart && leftValue <= centerEnd) {
       return; // Keine Pflanze in der Mitte erstellen
+    }
+
+    // Prüfe, ob die Position bereits belegt ist
+    if (isPositionOccupied(leftValue)) {
+      return; // Position ist bereits belegt
     }
 
     setPlants(prev => {
