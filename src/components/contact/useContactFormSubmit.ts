@@ -18,7 +18,8 @@ export const useContactFormSubmit = (
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
+      // Insert data into Supabase
+      const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([{
           name: values.name,
@@ -36,9 +37,19 @@ export const useContactFormSubmit = (
           shortDescription: values.shortDescription
         }]);
       
-      if (error) {
-        console.error('Error submitting form:', error);
-        throw error;
+      if (dbError) {
+        console.error('Error submitting form to database:', dbError);
+        throw dbError;
+      }
+
+      // Send email notification
+      const { error: emailError } = await supabase.functions.invoke('send-contact-notification', {
+        body: values
+      });
+
+      if (emailError) {
+        console.error('Error sending email notification:', emailError);
+        // We don't throw here as the form data was already saved
       }
       
       // Reset form and show success message
