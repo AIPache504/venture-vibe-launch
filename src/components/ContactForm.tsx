@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -101,7 +100,6 @@ export const ContactForm = () => {
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // Hier später die Logik für das Absenden des Formulars implementieren
     console.log(values);
     
     toast({
