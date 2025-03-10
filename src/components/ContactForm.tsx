@@ -35,6 +35,12 @@ const formSchema = z.object({
     'Sonstiges'
   ]),
   phase: z.enum(['Seed', 'Pre-Seed', 'Series A oder später']).optional(),
+  investorType: z.enum([
+    'Privatinvestor',
+    'Corporate',
+    'Institutioneller Investor', 
+    'Family Office'
+  ]).optional(),
   location: z.enum(['Germany', 'Europe', 'International']),
   shortDescription: z.string().max(500, {
     message: 'Die Beschreibung darf maximal 500 Zeichen lang sein.',
@@ -62,6 +68,7 @@ export const ContactForm = () => {
 
   const watchInquiryType = form.watch('inquiryType');
   const isStartup = watchInquiryType === 'Startup';
+  const isInvestment = watchInquiryType === 'Investment';
 
   const nextStep = () => {
     setFormStep(formStep + 1);
@@ -105,6 +112,7 @@ export const ContactForm = () => {
               getLocalizedText={getLocalizedText} 
               nextStep={nextStep}
               isStartup={isStartup}
+              isInvestment={isInvestment}
             />
           )}
 

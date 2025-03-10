@@ -22,9 +22,10 @@ interface PersonalInfoStepProps {
   getLocalizedText: (de: string, en: string) => string;
   nextStep: () => void;
   isStartup: boolean;
+  isInvestment: boolean;
 }
 
-export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup }: PersonalInfoStepProps) => {
+export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup, isInvestment }: PersonalInfoStepProps) => {
   const form = useFormContext();
 
   return (
@@ -163,6 +164,40 @@ export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup }: Pers
                   <SelectItem value="Seed">Seed</SelectItem>
                   <SelectItem value="Series A oder später">
                     {getLocalizedText('Series A oder später', 'Series A or later')}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      )}
+
+      {isInvestment && (
+        <FormField
+          control={form.control}
+          name="investorType"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{getLocalizedText('Investorentyp', 'Investor Type')}</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="Privatinvestor">
+                    {getLocalizedText('Privatinvestor', 'Private Investor')}
+                  </SelectItem>
+                  <SelectItem value="Corporate">
+                    {getLocalizedText('Corporate', 'Corporate')}
+                  </SelectItem>
+                  <SelectItem value="Institutioneller Investor">
+                    {getLocalizedText('Institutioneller Investor', 'Institutional Investor')}
+                  </SelectItem>
+                  <SelectItem value="Family Office">
+                    {getLocalizedText('Family Office', 'Family Office')}
                   </SelectItem>
                 </SelectContent>
               </Select>
