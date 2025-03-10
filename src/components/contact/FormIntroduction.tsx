@@ -13,8 +13,8 @@ export const FormIntroduction = ({ getLocalizedText }: FormIntroductionProps) =>
       </h1>
       <p className="text-mayNavy/80 mb-8">
         {getLocalizedText(
-          'Dieses Kontaktformular dient der effizienten Einordnung eingehender Anfragen von Startups und anderen Stakeholdern unseres Fonds. Ziel ist es, die Bearbeitung zu beschleunigen und relevante Anfragen direkt priorisieren zu können.',
-          'This contact form serves to efficiently categorize incoming inquiries from startups and other stakeholders of our fund. The goal is to accelerate processing and prioritize relevant inquiries directly.'
+          'Du möchtest mit uns Kontakt aufnehmen? Dann lass uns doch ein paar Infos zu dir und deinem Anliegen da, damit wir dir schnell weiterhelfen können.',
+          'Would you like to get in touch with us? Please share some information about yourself and your inquiry so we can help you quickly.'
         )}
       </p>
     </div>
