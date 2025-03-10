@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -78,7 +79,8 @@ export default {
         },
         fall: {
           "0%": { transform: "translateY(-10vh) rotate(0deg)", opacity: "0" },
-          "50%": { opacity: "0.5" },
+          "25%": { opacity: "var(--signet-opacity, 0.1)" },
+          "75%": { opacity: "var(--signet-opacity, 0.1)" },
           "100%": { transform: "translateY(100vh) rotate(360deg)", opacity: "0" },
         },
       },
@@ -87,7 +89,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         fadeIn: "fadeIn 1s ease-out",
         pulse: "pulse 3s infinite",
-        fall: "fall 10s linear infinite",
+        fall: "fall var(--fall-duration, 10s) linear infinite",
       },
     },
   },
