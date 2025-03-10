@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -41,15 +40,11 @@ const formSchema = z.object({
   germanState: z.enum(['NRW', 'Andere Bundesländer']).optional(),
   nrwRegion: z.enum(['MS/OS', 'OWL', 'Ruhrgebiet', 'Andere Regionen in NRW']).optional(),
   techFocus: z.enum([
-    'Künstliche Intelligenz',
-    'Industrieinnovation (Robotik, Automatisierung, Digitalisierung)',
-    'Nachhaltigkeit & Klimawandel',
-    'KI-getriebene Transformation',
-    'Hyperpersonalisierung durch KI',
-    'Agentenökonomie (KI-Agenten)',
-    'Sichere KI (Governance & Compliance)',
-    'Technologiekonvergenz (Biotech, Blockchain, Quantum)',
-    'KI Infrastruktur & Energie'
+    'Künstliche Intelligenz (KI)',
+    'Industrieinnovation',
+    'Nachhaltigkeit & Klimatechnologie',
+    'Deep Tech',
+    'Andere'
   ]).optional(),
   fundingNeed: z.enum(['<500k EUR', '500k–2M EUR', '2M–5M EUR', '>5M EUR']).optional(),
   // Investor fields
