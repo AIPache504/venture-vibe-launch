@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { UseFormReset } from 'react-hook-form';
 import { supabase } from '@/integrations/supabase/client';
@@ -120,8 +119,8 @@ export const useContactFormSubmit = (
           ? 'Test-Email gesendet!' 
           : 'Test email sent!',
         description: formLanguage === 'de'
-          ? 'Eine Test-Email wurde an die verifizierte Absender-Email gesendet.'
-          : 'A test email has been sent to the verified sender email.',
+          ? 'Eine Test-Email wurde an herrlule@gmail.com gesendet.'
+          : 'A test email has been sent to herrlule@gmail.com.',
       });
     } catch (error) {
       console.error('Test email error:', error);

@@ -36,13 +36,18 @@ const handler = async (req: Request): Promise<Response> => {
     const formData: ContactFormData = await req.json();
     console.log("Received contact form data:", formData);
 
-    // In development or when sending a test email, use the allowed test email
+    // Always use onboarding@resend.dev as the "from" address for new Resend accounts
+    // until your domain is verified
+    const fromEmail = "onboarding@resend.dev";
+    
+    // For test emails, send to the verified email (which is the one you provided)
     const isTestEmail = formData.email === "test@example.com";
-    const senderEmail = "herrlule@gmail.com"; // Use the verified email from the resend account
-    const recipientEmail = isTestEmail ? senderEmail : "Dominik@Mayventures.vc";
+    const recipientEmail = isTestEmail ? "herrlule@gmail.com" : "Dominik@Mayventures.vc";
+    
+    console.log(`Sending email from ${fromEmail} to ${recipientEmail}`);
 
     const emailResponse = await resend.emails.send({
-      from: `May Ventures <${senderEmail}>`,
+      from: `May Ventures <${fromEmail}>`,
       to: [recipientEmail],
       subject: `New Contact Form Submission: ${formData.name} from ${formData.company}`,
       html: `
