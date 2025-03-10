@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,9 +33,12 @@ const formSchema = z.object({
   company: z.string().min(1, {
     message: 'Bitte geben Sie einen Firmennamen ein.',
   }),
-  website: z.string().url({
-    message: 'Bitte geben Sie eine gültige URL ein.',
-  }).optional(),
+  website: z.union([
+    z.string().url({
+      message: 'Bitte geben Sie eine gültige URL ein.',
+    }),
+    z.string().length(0) // Allow empty string
+  ]).optional(),
   inquiryType: z.enum([
     'Startup',
     'Investment',
@@ -146,7 +148,7 @@ export const ContactForm = () => {
               <FormItem>
                 <FormLabel>{language === 'de' ? 'Website (optional)' : 'Website (optional)'}</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} value={field.value || ''} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
