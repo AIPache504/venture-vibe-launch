@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,7 +10,7 @@ import { LanguageSwitcher } from '@/components/contact/LanguageSwitcher';
 import { FormIntroduction } from '@/components/contact/FormIntroduction';
 import { PersonalInfoStep } from '@/components/contact/PersonalInfoStep';
 import { DescriptionStep } from '@/components/contact/DescriptionStep';
-import { submitContactForm } from '@/services/contactService';
+import { submitContactForm, ContactFormData } from '@/services/contactService';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -105,7 +106,24 @@ export const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      const result = await submitContactForm(values);
+      // Sicherstellen, dass alle erforderlichen Felder vorhanden sind gemäß ContactFormData Interface
+      const formData: ContactFormData = {
+        name: values.name,
+        email: values.email,
+        company: values.company,
+        inquiryType: values.inquiryType,
+        location: values.location,
+        shortDescription: values.shortDescription,
+        website: values.website,
+        phase: values.phase,
+        germanState: values.germanState,
+        nrwRegion: values.nrwRegion,
+        techFocus: values.techFocus,
+        fundingNeed: values.fundingNeed,
+        investorType: values.investorType
+      };
+      
+      const result = await submitContactForm(formData);
       
       if (result.success) {
         toast({
