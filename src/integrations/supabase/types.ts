@@ -14,7 +14,7 @@ export type Database = {
           company: string | null
           createdAt: string | null
           email: string | null
-          fundngNeed: string | null
+          fundingNeed: string | null
           germanState: string | null
           id: string
           inquiryType: string | null
@@ -31,7 +31,7 @@ export type Database = {
           company?: string | null
           createdAt?: string | null
           email?: string | null
-          fundngNeed?: string | null
+          fundingNeed?: string | null
           germanState?: string | null
           id?: string
           inquiryType?: string | null
@@ -48,7 +48,7 @@ export type Database = {
           company?: string | null
           createdAt?: string | null
           email?: string | null
-          fundngNeed?: string | null
+          fundingNeed?: string | null
           germanState?: string | null
           id?: string
           inquiryType?: string | null

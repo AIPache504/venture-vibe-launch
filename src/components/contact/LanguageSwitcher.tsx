@@ -1,26 +1,24 @@
 
 import React from 'react';
+import { useContactForm } from './ContactFormProvider';
 import { Button } from '@/components/ui/button';
 
-interface LanguageSwitcherProps {
-  formLanguage: 'de' | 'en';
-  setFormLanguage: (language: 'de' | 'en') => void;
-}
-
-export const LanguageSwitcher = ({ formLanguage, setFormLanguage }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = () => {
+  const { formLanguage, setFormLanguage } = useContactForm();
+  
   return (
-    <div className="flex space-x-4 mb-8">
-      <Button 
-        variant={formLanguage === 'de' ? 'default' : 'outline'} 
-        onClick={() => setFormLanguage('de')}
+    <div className="flex justify-center space-x-4">
+      <Button
         type="button"
+        variant={formLanguage === 'de' ? 'default' : 'outline'}
+        onClick={() => setFormLanguage('de')}
       >
         Deutsch
       </Button>
-      <Button 
-        variant={formLanguage === 'en' ? 'default' : 'outline'} 
-        onClick={() => setFormLanguage('en')}
+      <Button
         type="button"
+        variant={formLanguage === 'en' ? 'default' : 'outline'}
+        onClick={() => setFormLanguage('en')}
       >
         English
       </Button>

@@ -6,10 +6,10 @@ import { InquiryTypeField } from '@/components/contact/InquiryTypeField';
 import { LocationFields } from '@/components/contact/LocationFields';
 import { StartupFields } from '@/components/contact/StartupFields';
 import { InvestorFields } from '@/components/contact/InvestorFields';
+import { useContactForm } from './ContactFormProvider';
 
 interface PersonalInfoStepProps {
   getLocalizedText: (de: string, en: string) => string;
-  nextStep: () => void;
   isStartup: boolean;
   isInvestment: boolean;
   isGermany: boolean;
@@ -18,12 +18,13 @@ interface PersonalInfoStepProps {
 
 export const PersonalInfoStep = ({ 
   getLocalizedText, 
-  nextStep, 
   isStartup, 
   isInvestment,
   isGermany,
   isNRW
 }: PersonalInfoStepProps) => {
+  const { setFormStep } = useContactForm();
+  
   return (
     <div className="space-y-6">
       <BasicInfoFields getLocalizedText={getLocalizedText} />
@@ -47,7 +48,7 @@ export const PersonalInfoStep = ({
       <div className="flex justify-end pt-4">
         <Button 
           type="button" 
-          onClick={nextStep}
+          onClick={() => setFormStep(2)}
         >
           {getLocalizedText('Weiter', 'Next')}
         </Button>

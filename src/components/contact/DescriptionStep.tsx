@@ -11,15 +11,15 @@ import {
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
+import { useContactForm } from './ContactFormProvider';
 
 interface DescriptionStepProps {
   getLocalizedText: (de: string, en: string) => string;
-  prevStep: () => void;
-  isSubmitting?: boolean;
 }
 
-export const DescriptionStep = ({ getLocalizedText, prevStep, isSubmitting = false }: DescriptionStepProps) => {
+export const DescriptionStep = ({ getLocalizedText }: DescriptionStepProps) => {
   const form = useFormContext();
+  const { setFormStep, isSubmitting } = useContactForm();
 
   return (
     <div className="space-y-6">
@@ -52,7 +52,7 @@ export const DescriptionStep = ({ getLocalizedText, prevStep, isSubmitting = fal
         <Button 
           type="button" 
           variant="outline" 
-          onClick={prevStep}
+          onClick={() => setFormStep(1)}
           disabled={isSubmitting}
         >
           {getLocalizedText('Zurück', 'Back')}

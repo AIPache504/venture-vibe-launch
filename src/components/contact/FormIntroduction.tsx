@@ -1,20 +1,19 @@
 
 import React from 'react';
+import { useContactForm } from './ContactFormProvider';
 
-interface FormIntroductionProps {
-  getLocalizedText: (de: string, en: string) => string;
-}
-
-export const FormIntroduction = ({ getLocalizedText }: FormIntroductionProps) => {
+export const FormIntroduction = () => {
+  const { getLocalizedText } = useContactForm();
+  
   return (
-    <div className="prose prose-gray max-w-none">
-      <h1 className="text-3xl font-bold text-mayNavy mb-4">
-        {getLocalizedText('Kontakt', 'Contact')}
+    <div className="text-center">
+      <h1 className="text-3xl font-bold">
+        {getLocalizedText('Kontaktformular', 'Contact Form')}
       </h1>
-      <p className="text-mayNavy/80 mb-8">
+      <p className="mt-2 text-gray-600">
         {getLocalizedText(
-          'Du möchtest mit uns Kontakt aufnehmen? Dann lass uns doch ein paar Infos zu dir und deinem Anliegen da, damit wir dir schnell weiterhelfen können.',
-          'Would you like to get in touch with us? Please share some information about yourself and your inquiry so we can help you quickly.'
+          'Füllen Sie das Formular aus, und wir werden uns so schnell wie möglich bei Ihnen melden.',
+          'Fill out the form, and we will get back to you as soon as possible.'
         )}
       </p>
     </div>
