@@ -27,6 +27,8 @@ interface ContactFormData {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  console.log("Function invoked with method:", req.method);
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -35,6 +37,13 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const formData: ContactFormData = await req.json();
     console.log("Received contact form data:", formData);
+
+    // Log the API key status (without exposing the actual key)
+    const hasApiKey = !!Deno.env.get("RESEND_API_KEY");
+    console.log("RESEND_API_KEY available:", hasApiKey);
+    if (!hasApiKey) {
+      throw new Error("Missing RESEND_API_KEY environment variable");
+    }
 
     // Always use onboarding@resend.dev as the "from" address for new Resend accounts
     // until your domain is verified
@@ -46,7 +55,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     console.log(`Sending email from ${fromEmail} to ${recipientEmail}`);
 
-    const emailResponse = await resend.emails.send({
+    const emailData = {
       from: `May Ventures <${fromEmail}>`,
       to: [recipientEmail],
       subject: `New Contact Form Submission: ${formData.name} from ${formData.company}`,
@@ -87,18 +96,31 @@ const handler = async (req: Request): Promise<Response> => {
         <h3>Description:</h3>
         <p>${formData.shortDescription}</p>
       `,
-    });
+    };
+    
+    console.log("Preparing to send email with data:", JSON.stringify(emailData, null, 2));
 
-    console.log("Email sent successfully:", emailResponse);
+    try {
+      const emailResponse = await resend.emails.send(emailData);
+      console.log("Email sent successfully:", emailResponse);
 
-    return new Response(JSON.stringify(emailResponse), {
-      status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+      return new Response(JSON.stringify(emailResponse), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    } catch (emailError) {
+      console.error("Error from Resend API:", emailError);
+      throw emailError;
+    }
   } catch (error) {
     console.error("Error sending email:", error);
+    console.error("Error details:", error.stack || "No stack trace available");
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: error.stack || "No additional details available"
+      }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
