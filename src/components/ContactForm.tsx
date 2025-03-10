@@ -64,6 +64,7 @@ export const ContactForm = () => {
       location: 'Germany',
       shortDescription: '',
     },
+    mode: 'onChange',
   });
 
   const watchInquiryType = form.watch('inquiryType');
