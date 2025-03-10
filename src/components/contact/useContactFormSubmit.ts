@@ -18,8 +18,7 @@ export const useContactFormSubmit = (
     setIsSubmitting(true);
     
     try {
-      // Insert form data into Supabase
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('contact_submissions')
         .insert([{
           name: values.name,
@@ -41,8 +40,6 @@ export const useContactFormSubmit = (
         console.error('Error submitting form:', error);
         throw error;
       }
-      
-      console.log('Form submission successful:', data);
       
       // Reset form and show success message
       reset();
