@@ -34,14 +34,30 @@ const formSchema = z.object({
     'Presseanfrage',
     'Sonstiges'
   ]),
-  phase: z.enum(['Seed', 'Pre-Seed', 'Series A oder später']).optional(),
+  // Startup fields
+  phase: z.enum(['Pre-Seed', 'Seed', 'Series A oder später']).optional(),
+  location: z.enum(['Germany', 'Europe', 'International']),
+  germanState: z.enum(['NRW', 'Andere Bundesländer']).optional(),
+  nrwRegion: z.enum(['MS/OS', 'OWL', 'Ruhrgebiet', 'Andere Regionen in NRW']).optional(),
+  techFocus: z.enum([
+    'Künstliche Intelligenz',
+    'Industrieinnovation (Robotik, Automatisierung, Digitalisierung)',
+    'Nachhaltigkeit & Klimawandel',
+    'KI-getriebene Transformation',
+    'Hyperpersonalisierung durch KI',
+    'Agentenökonomie (KI-Agenten)',
+    'Sichere KI (Governance & Compliance)',
+    'Technologiekonvergenz (Biotech, Blockchain, Quantum)',
+    'KI Infrastruktur & Energie'
+  ]).optional(),
+  fundingNeed: z.enum(['<500k EUR', '500k–2M EUR', '2M–5M EUR', '>5M EUR']).optional(),
+  // Investor fields
   investorType: z.enum([
     'Privatinvestor',
     'Corporate',
     'Institutioneller Investor', 
     'Family Office'
   ]).optional(),
-  location: z.enum(['Germany', 'Europe', 'International']),
   shortDescription: z.string().max(500, {
     message: 'Die Beschreibung darf maximal 500 Zeichen lang sein.',
   }),
@@ -68,8 +84,13 @@ export const ContactForm = () => {
   });
 
   const watchInquiryType = form.watch('inquiryType');
+  const watchLocation = form.watch('location');
+  const watchGermanState = form.watch('germanState');
+  
   const isStartup = watchInquiryType === 'Startup';
   const isInvestment = watchInquiryType === 'Investment';
+  const isGermany = watchLocation === 'Germany';
+  const isNRW = watchGermanState === 'NRW';
 
   const nextStep = () => {
     setFormStep(formStep + 1);
@@ -114,6 +135,8 @@ export const ContactForm = () => {
               nextStep={nextStep}
               isStartup={isStartup}
               isInvestment={isInvestment}
+              isGermany={isGermany}
+              isNRW={isNRW}
             />
           )}
 

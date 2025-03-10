@@ -23,9 +23,18 @@ interface PersonalInfoStepProps {
   nextStep: () => void;
   isStartup: boolean;
   isInvestment: boolean;
+  isGermany: boolean;
+  isNRW: boolean;
 }
 
-export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup, isInvestment }: PersonalInfoStepProps) => {
+export const PersonalInfoStep = ({ 
+  getLocalizedText, 
+  nextStep, 
+  isStartup, 
+  isInvestment,
+  isGermany,
+  isNRW
+}: PersonalInfoStepProps) => {
   const form = useFormContext();
 
   return (
@@ -146,6 +155,64 @@ export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup, isInve
         )}
       />
 
+      {isGermany && (
+        <FormField
+          control={form.control}
+          name="germanState"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{getLocalizedText('Bundesland', 'German State')}</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={getLocalizedText('Bitte wählen', 'Please select')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="NRW">
+                    {getLocalizedText('NRW', 'NRW')}
+                  </SelectItem>
+                  <SelectItem value="Andere Bundesländer">
+                    {getLocalizedText('Andere Bundesländer', 'Other German States')}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      )}
+
+      {isGermany && isNRW && (
+        <FormField
+          control={form.control}
+          name="nrwRegion"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{getLocalizedText('Region in NRW', 'Region in NRW')}</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={getLocalizedText('Bitte wählen', 'Please select')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="MS/OS">MS/OS</SelectItem>
+                  <SelectItem value="OWL">OWL</SelectItem>
+                  <SelectItem value="Ruhrgebiet">
+                    {getLocalizedText('Ruhrgebiet', 'Ruhr Area')}
+                  </SelectItem>
+                  <SelectItem value="Andere Regionen in NRW">
+                    {getLocalizedText('Andere Regionen in NRW', 'Other Regions in NRW')}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      )}
+
       {isStartup && (
         <FormField
           control={form.control}
@@ -156,7 +223,7 @@ export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup, isInve
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue />
+                    <SelectValue placeholder={getLocalizedText('Bitte wählen', 'Please select')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -165,6 +232,83 @@ export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup, isInve
                   <SelectItem value="Series A oder später">
                     {getLocalizedText('Series A oder später', 'Series A or later')}
                   </SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      )}
+
+      {isStartup && (
+        <FormField
+          control={form.control}
+          name="techFocus"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{getLocalizedText('Technologischer Fokus', 'Technology Focus')}</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={getLocalizedText('Bitte wählen', 'Please select')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="Künstliche Intelligenz">
+                    {getLocalizedText('Künstliche Intelligenz', 'Artificial Intelligence')}
+                  </SelectItem>
+                  <SelectItem value="Industrieinnovation (Robotik, Automatisierung, Digitalisierung)">
+                    {getLocalizedText('Industrieinnovation (Robotik, Automatisierung, Digitalisierung)', 
+                      'Industrial Innovation (Robotics, Automation, Digitalization)')}
+                  </SelectItem>
+                  <SelectItem value="Nachhaltigkeit & Klimawandel">
+                    {getLocalizedText('Nachhaltigkeit & Klimawandel', 'Sustainability & Climate Change')}
+                  </SelectItem>
+                  <SelectItem value="KI-getriebene Transformation">
+                    {getLocalizedText('KI-getriebene Transformation', 'AI-driven Transformation')}
+                  </SelectItem>
+                  <SelectItem value="Hyperpersonalisierung durch KI">
+                    {getLocalizedText('Hyperpersonalisierung durch KI', 'AI Hyperpersonalization')}
+                  </SelectItem>
+                  <SelectItem value="Agentenökonomie (KI-Agenten)">
+                    {getLocalizedText('Agentenökonomie (KI-Agenten)', 'Agent Economy (AI Agents)')}
+                  </SelectItem>
+                  <SelectItem value="Sichere KI (Governance & Compliance)">
+                    {getLocalizedText('Sichere KI (Governance & Compliance)', 'Secure AI (Governance & Compliance)')}
+                  </SelectItem>
+                  <SelectItem value="Technologiekonvergenz (Biotech, Blockchain, Quantum)">
+                    {getLocalizedText('Technologiekonvergenz (Biotech, Blockchain, Quantum)', 
+                      'Technology Convergence (Biotech, Blockchain, Quantum)')}
+                  </SelectItem>
+                  <SelectItem value="KI Infrastruktur & Energie">
+                    {getLocalizedText('KI Infrastruktur & Energie', 'AI Infrastructure & Energy')}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      )}
+
+      {isStartup && (
+        <FormField
+          control={form.control}
+          name="fundingNeed"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{getLocalizedText('Finanzierungsbedarf', 'Funding Need')}</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={getLocalizedText('Bitte wählen', 'Please select')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="<500k EUR">&lt;500k EUR</SelectItem>
+                  <SelectItem value="500k–2M EUR">500k–2M EUR</SelectItem>
+                  <SelectItem value="2M–5M EUR">2M–5M EUR</SelectItem>
+                  <SelectItem value=">5M EUR">&gt;5M EUR</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -183,7 +327,7 @@ export const PersonalInfoStep = ({ getLocalizedText, nextStep, isStartup, isInve
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue />
+                    <SelectValue placeholder={getLocalizedText('Bitte wählen', 'Please select')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
