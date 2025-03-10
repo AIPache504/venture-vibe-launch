@@ -1,4 +1,3 @@
-
 import * as z from 'zod';
 
 // Helper function to add https:// to URLs if missing
@@ -18,13 +17,7 @@ export const formSchema = z.object({
   company: z.string().min(1, {
     message: 'Bitte geben Sie einen Firmennamen ein.',
   }),
-  website: z.union([
-    z.string().url({
-      message: 'Bitte geben Sie eine gültige URL ein.',
-    }),
-    z.string().length(0) // Allow empty string
-  ]).optional()
-    .transform((val) => val ? normalizeUrl(val) : val),
+  website: z.string().optional().transform((val) => val ? normalizeUrl(val) : val),
   inquiryType: z.enum([
     'Startup',
     'Investment',
