@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +7,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import ImprintPage from "./pages/Imprint";
+import ContactPage from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +22,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/imprint" element={<ImprintPage />} />
+              <Route path="/contact" element={<ContactPage />} />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>

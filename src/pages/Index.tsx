@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Logo } from '@/components/Logo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
@@ -8,6 +7,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Link } from 'react-router-dom';
 import { FallingSignets } from '@/components/FallingSignets';
 import { Helmet } from 'react-helmet-async';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   const { t, language } = useLanguage();
@@ -44,16 +44,24 @@ const Index = () => {
               {t('stayTuned')}
             </p>
 
-            <a 
-              href="https://www.linkedin.com/company/mayvc/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="inline-flex items-center gap-2 text-mayNavy hover:text-mayPink transition-colors mb-8"
-              aria-label="Follow May Ventures on LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" aria-hidden="true" />
-              <span>{language === 'de' ? 'Folge uns auf LinkedIn' : 'Follow us on LinkedIn'}</span>
-            </a>
+            <div className="flex justify-center gap-4 mb-8">
+              <a 
+                href="https://www.linkedin.com/company/mayvc/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-mayNavy hover:text-mayPink transition-colors"
+                aria-label="Follow May Ventures on LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" aria-hidden="true" />
+                <span>{language === 'de' ? 'Folge uns auf LinkedIn' : 'Follow us on LinkedIn'}</span>
+              </a>
+              
+              <Link to="/contact">
+                <Button variant="outline">
+                  {language === 'de' ? 'Kontakt' : 'Contact'}
+                </Button>
+              </Link>
+            </div>
           </section>
 
           <section aria-label="Team" className="mt-12">
