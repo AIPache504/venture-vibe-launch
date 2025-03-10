@@ -95,11 +95,13 @@ export const useContactFormSubmit = (
         phase: 'Seed',
         location: 'Germany',
         germanState: 'NRW',
-        nrwRegion: 'Ruhrgebiet', // Corrected from 'Rheinland' to valid enum value
-        techFocus: 'Künstliche Intelligenz (KI)', // Corrected from 'AI' to valid enum value
-        fundingNeed: '500k–2M EUR', // Corrected from '500K-1M' to valid enum value
+        nrwRegion: 'Ruhrgebiet',
+        techFocus: 'Künstliche Intelligenz (KI)',
+        fundingNeed: '500k–2M EUR',
         shortDescription: 'This is a test email to verify the email notification system.'
       };
+
+      console.log('Sending test email with data:', testData);
 
       // Send test email notification
       const { data, error } = await supabase.functions.invoke('send-contact-notification', {
@@ -118,8 +120,8 @@ export const useContactFormSubmit = (
           ? 'Test-Email gesendet!' 
           : 'Test email sent!',
         description: formLanguage === 'de'
-          ? 'Eine Test-Email wurde an Dominik@Mayventures.vc gesendet.'
-          : 'A test email has been sent to Dominik@Mayventures.vc.',
+          ? 'Eine Test-Email wurde an die verifizierte Absender-Email gesendet.'
+          : 'A test email has been sent to the verified sender email.',
       });
     } catch (error) {
       console.error('Test email error:', error);

@@ -36,9 +36,14 @@ const handler = async (req: Request): Promise<Response> => {
     const formData: ContactFormData = await req.json();
     console.log("Received contact form data:", formData);
 
+    // In development or when sending a test email, use the allowed test email
+    const isTestEmail = formData.email === "test@example.com";
+    const senderEmail = "herrlule@gmail.com"; // Use the verified email from the resend account
+    const recipientEmail = isTestEmail ? senderEmail : "Dominik@Mayventures.vc";
+
     const emailResponse = await resend.emails.send({
-      from: "May Ventures Contact Form <onboarding@resend.dev>",
-      to: ["Dominik@Mayventures.vc"],
+      from: `May Ventures <${senderEmail}>`,
+      to: [recipientEmail],
       subject: `New Contact Form Submission: ${formData.name} from ${formData.company}`,
       html: `
         <h2>New Contact Form Submission</h2>
