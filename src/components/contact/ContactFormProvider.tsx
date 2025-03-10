@@ -17,6 +17,8 @@ interface ContactFormContextType {
   isGermany: boolean;
   isNRW: boolean;
   getLocalizedText: (de: string, en: string) => string;
+  sendTestEmail: () => Promise<void>;
+  isSendingTest: boolean;
 }
 
 const ContactFormContext = createContext<ContactFormContextType>({} as ContactFormContextType);
@@ -55,7 +57,7 @@ export const ContactFormProvider: React.FC<ContactFormProviderProps> = ({ childr
   const isGermany = watchLocation === 'Germany';
   const isNRW = watchGermanState === 'NRW';
 
-  const { onSubmit, isSubmitting } = useContactFormSubmit(
+  const { onSubmit, isSubmitting, sendTestEmail, isSendingTest } = useContactFormSubmit(
     formLanguage,
     form.reset,
     setFormStep
@@ -76,6 +78,8 @@ export const ContactFormProvider: React.FC<ContactFormProviderProps> = ({ childr
     isGermany,
     isNRW,
     getLocalizedText,
+    sendTestEmail,
+    isSendingTest,
   };
 
   return (

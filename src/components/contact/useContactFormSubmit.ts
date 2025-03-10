@@ -12,6 +12,7 @@ export const useContactFormSubmit = (
 ) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSendingTest, setIsSendingTest] = useState(false);
 
   const onSubmit = async (values: FormValues) => {
     console.log('Form submitted with values:', values);
@@ -80,5 +81,61 @@ export const useContactFormSubmit = (
     }
   };
 
-  return { onSubmit, isSubmitting };
+  const sendTestEmail = async () => {
+    setIsSendingTest(true);
+    
+    try {
+      // Prepare test data
+      const testData: FormValues = {
+        name: 'Test User',
+        email: 'test@example.com',
+        company: 'Test Company',
+        website: 'https://test-website.com',
+        inquiryType: 'Startup',
+        phase: 'Seed',
+        location: 'Germany',
+        germanState: 'NRW',
+        nrwRegion: 'Rheinland',
+        techFocus: 'AI',
+        fundingNeed: '500K-1M',
+        shortDescription: 'This is a test email to verify the email notification system.'
+      };
+
+      // Send test email notification
+      const { data, error } = await supabase.functions.invoke('send-contact-notification', {
+        body: testData
+      });
+
+      if (error) {
+        console.error('Error sending test email:', error);
+        throw error;
+      }
+      
+      console.log('Test email response:', data);
+      
+      toast({
+        title: formLanguage === 'de' 
+          ? 'Test-Email gesendet!' 
+          : 'Test email sent!',
+        description: formLanguage === 'de'
+          ? 'Eine Test-Email wurde an Dominik@Mayventures.vc gesendet.'
+          : 'A test email has been sent to Dominik@Mayventures.vc.',
+      });
+    } catch (error) {
+      console.error('Test email error:', error);
+      toast({
+        title: formLanguage === 'de' 
+          ? 'Fehler beim Senden der Test-Email' 
+          : 'Error sending test email',
+        description: formLanguage === 'de'
+          ? 'Bitte überprüfen Sie die Konsolenlogs für weitere Details.'
+          : 'Please check the console logs for more details.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSendingTest(false);
+    }
+  };
+
+  return { onSubmit, isSubmitting, sendTestEmail, isSendingTest };
 };
