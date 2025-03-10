@@ -9,7 +9,6 @@ import { LanguageSwitcher } from '@/components/contact/LanguageSwitcher';
 import { FormIntroduction } from '@/components/contact/FormIntroduction';
 import { PersonalInfoStep } from '@/components/contact/PersonalInfoStep';
 import { DescriptionStep } from '@/components/contact/DescriptionStep';
-import { submitContactForm } from '@/services/contactService';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -68,7 +67,6 @@ export const ContactForm = () => {
   const { toast } = useToast();
   const [formStep, setFormStep] = useState(1);
   const [formLanguage, setFormLanguage] = useState<'de' | 'en'>(language as 'de' | 'en');
-  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -102,48 +100,16 @@ export const ContactForm = () => {
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsSubmitting(true);
+    console.log(values);
     
-    try {
-      const result = await submitContactForm(values);
-      
-      if (result.success) {
-        toast({
-          title: formLanguage === 'de' 
-            ? 'Vielen Dank für Ihre Anfrage!' 
-            : 'Thank you for your inquiry!',
-          description: formLanguage === 'de'
-            ? 'Wir melden uns typischerweise innerhalb von 10 Tagen zurück.'
-            : 'We typically respond within 10 days.',
-        });
-        
-        form.reset();
-        setFormStep(1);
-      } else {
-        toast({
-          variant: 'destructive',
-          title: formLanguage === 'de' 
-            ? 'Fehler bei der Übermittlung' 
-            : 'Submission Error',
-          description: result.error || (formLanguage === 'de'
-            ? 'Bitte versuchen Sie es später erneut.'
-            : 'Please try again later.'),
-        });
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      toast({
-        variant: 'destructive',
-        title: formLanguage === 'de' 
-          ? 'Ein Fehler ist aufgetreten' 
-          : 'An error occurred',
-        description: formLanguage === 'de'
-          ? 'Bitte versuchen Sie es später erneut.'
-          : 'Please try again later.',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    toast({
+      title: formLanguage === 'de' 
+        ? 'Vielen Dank für Ihre Anfrage!' 
+        : 'Thank you for your inquiry!',
+      description: formLanguage === 'de'
+        ? 'Wir melden uns typischerweise innerhalb von 10 Tagen zurück.'
+        : 'We typically respond within 10 days.',
+    });
   };
 
   const getLocalizedText = (de: string, en: string) => {
@@ -176,7 +142,6 @@ export const ContactForm = () => {
             <DescriptionStep 
               getLocalizedText={getLocalizedText} 
               prevStep={prevStep}
-              isSubmitting={isSubmitting}
             />
           )}
         </form>
