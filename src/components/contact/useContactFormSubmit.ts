@@ -85,7 +85,7 @@ export const useContactFormSubmit = (
     setIsSendingTest(true);
     
     try {
-      // Prepare test data
+      // Prepare test data with corrected enum values
       const testData: FormValues = {
         name: 'Test User',
         email: 'test@example.com',
@@ -95,9 +95,9 @@ export const useContactFormSubmit = (
         phase: 'Seed',
         location: 'Germany',
         germanState: 'NRW',
-        nrwRegion: 'Rheinland',
-        techFocus: 'AI',
-        fundingNeed: '500K-1M',
+        nrwRegion: 'Ruhrgebiet', // Corrected from 'Rheinland' to valid enum value
+        techFocus: 'Künstliche Intelligenz (KI)', // Corrected from 'AI' to valid enum value
+        fundingNeed: '500k–2M EUR', // Corrected from '500K-1M' to valid enum value
         shortDescription: 'This is a test email to verify the email notification system.'
       };
 
