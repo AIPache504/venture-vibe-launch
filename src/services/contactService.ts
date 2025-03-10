@@ -20,6 +20,8 @@ export interface ContactFormData {
 
 export async function submitContactForm(formData: ContactFormData): Promise<{ success: boolean; error?: string }> {
   try {
+    console.log('Submitting contact form with data:', formData);
+    
     // Add timestamp
     const dataWithTimestamp = {
       ...formData,
@@ -36,17 +38,31 @@ export async function submitContactForm(formData: ContactFormData): Promise<{ su
       return { success: false, error: error.message };
     }
 
-    // Trigger email notification via edge function
-    const { error: emailError } = await supabase.functions.invoke('send-contact-notification', {
-      body: JSON.stringify({
-        formData: dataWithTimestamp,
-        recipients: ['dominik@mayventures.vc', 'janne@mayventures.vc']
-      })
-    });
+    console.log('Form data successfully inserted into Supabase');
 
-    if (emailError) {
-      console.error('Email notification error:', emailError);
-      return { success: true, error: 'Form submitted but email notification failed' };
+    // Nur Edge Function aufrufen, wenn im Production-Modus
+    if (import.meta.env.PROD) {
+      try {
+        // Trigger email notification via edge function
+        const { error: emailError } = await supabase.functions.invoke('send-contact-notification', {
+          body: JSON.stringify({
+            formData: dataWithTimestamp,
+            recipients: ['dominik@mayventures.vc', 'janne@mayventures.vc']
+          })
+        });
+
+        if (emailError) {
+          console.error('Email notification error:', emailError);
+          return { success: true, error: 'Form submitted but email notification failed' };
+        }
+        
+        console.log('Email notification sent successfully');
+      } catch (emailErr) {
+        console.error('Failed to send email notification:', emailErr);
+        return { success: true, error: 'Form submitted but failed to send email notification' };
+      }
+    } else {
+      console.log('Skipping email notification in development mode');
     }
 
     return { success: true };
