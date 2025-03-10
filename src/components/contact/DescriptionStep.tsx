@@ -10,13 +10,19 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
+import { Loader2 } from 'lucide-react';
 
 interface DescriptionStepProps {
   getLocalizedText: (de: string, en: string) => string;
   prevStep: () => void;
+  isSubmitting?: boolean;
 }
 
-export const DescriptionStep = ({ getLocalizedText, prevStep }: DescriptionStepProps) => {
+export const DescriptionStep = ({ 
+  getLocalizedText, 
+  prevStep, 
+  isSubmitting = false 
+}: DescriptionStepProps) => {
   const form = useFormContext();
 
   return (
@@ -50,11 +56,19 @@ export const DescriptionStep = ({ getLocalizedText, prevStep }: DescriptionStepP
           type="button" 
           variant="outline" 
           onClick={prevStep}
+          disabled={isSubmitting}
         >
           {getLocalizedText('Zurück', 'Back')}
         </Button>
-        <Button type="submit">
-          {getLocalizedText('Absenden', 'Submit')}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              {getLocalizedText('Wird gesendet...', 'Submitting...')}
+            </>
+          ) : (
+            getLocalizedText('Absenden', 'Submit')
+          )}
         </Button>
       </div>
     </div>
