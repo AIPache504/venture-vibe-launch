@@ -7,6 +7,7 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  FormDescription,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
@@ -68,8 +69,14 @@ export const BasicInfoFields = ({ getLocalizedText }: BasicInfoFieldsProps) => {
           <FormItem>
             <FormLabel>{getLocalizedText('Website (optional)', 'Website (optional)')}</FormLabel>
             <FormControl>
-              <Input {...field} value={field.value || ''} />
+              <Input {...field} value={field.value || ''} placeholder="example.com" />
             </FormControl>
+            <FormDescription>
+              {getLocalizedText(
+                'Einfach Domain eingeben, https:// wird automatisch hinzugefügt.',
+                'Simply enter domain, https:// will be added automatically.'
+              )}
+            </FormDescription>
             <FormMessage />
           </FormItem>
         )}

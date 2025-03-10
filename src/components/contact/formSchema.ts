@@ -1,6 +1,13 @@
 
 import * as z from 'zod';
 
+// Helper function to add https:// to URLs if missing
+const normalizeUrl = (url: string): string => {
+  if (!url) return '';
+  if (url.match(/^https?:\/\//)) return url;
+  return `https://${url}`;
+};
+
 export const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Name muss mindestens 2 Zeichen lang sein.',
@@ -16,7 +23,8 @@ export const formSchema = z.object({
       message: 'Bitte geben Sie eine gültige URL ein.',
     }),
     z.string().length(0) // Allow empty string
-  ]).optional(),
+  ]).optional()
+    .transform((val) => val ? normalizeUrl(val) : val),
   inquiryType: z.enum([
     'Startup',
     'Investment',
