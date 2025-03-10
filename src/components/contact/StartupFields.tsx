@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
 
 interface StartupFieldsProps {
   getLocalizedText: (de: string, en: string) => string;
@@ -63,34 +64,18 @@ export const StartupFields = ({ getLocalizedText }: StartupFieldsProps) => {
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="Künstliche Intelligenz">
-                  {getLocalizedText('Künstliche Intelligenz', 'Artificial Intelligence')}
+                <SelectItem value="Künstliche Intelligenz (KI)">
+                  {getLocalizedText('Künstliche Intelligenz (KI)', 'Artificial Intelligence (AI)')}
                 </SelectItem>
-                <SelectItem value="Industrieinnovation (Robotik, Automatisierung, Digitalisierung)">
-                  {getLocalizedText('Industrieinnovation (Robotik, Automatisierung, Digitalisierung)', 
-                    'Industrial Innovation (Robotics, Automation, Digitalization)')}
+                <SelectItem value="Industrieinnovation">
+                  {getLocalizedText('Industrieinnovation', 'Industrial Innovation')}
                 </SelectItem>
-                <SelectItem value="Nachhaltigkeit & Klimawandel">
-                  {getLocalizedText('Nachhaltigkeit & Klimawandel', 'Sustainability & Climate Change')}
+                <SelectItem value="Nachhaltigkeit & Klimatechnologie">
+                  {getLocalizedText('Nachhaltigkeit & Klimatechnologie', 'Sustainability & Climate Tech')}
                 </SelectItem>
-                <SelectItem value="KI-getriebene Transformation">
-                  {getLocalizedText('KI-getriebene Transformation', 'AI-driven Transformation')}
-                </SelectItem>
-                <SelectItem value="Hyperpersonalisierung durch KI">
-                  {getLocalizedText('Hyperpersonalisierung durch KI', 'AI Hyperpersonalization')}
-                </SelectItem>
-                <SelectItem value="Agentenökonomie (KI-Agenten)">
-                  {getLocalizedText('Agentenökonomie (KI-Agenten)', 'Agent Economy (AI Agents)')}
-                </SelectItem>
-                <SelectItem value="Sichere KI (Governance & Compliance)">
-                  {getLocalizedText('Sichere KI (Governance & Compliance)', 'Secure AI (Governance & Compliance)')}
-                </SelectItem>
-                <SelectItem value="Technologiekonvergenz (Biotech, Blockchain, Quantum)">
-                  {getLocalizedText('Technologiekonvergenz (Biotech, Blockchain, Quantum)', 
-                    'Technology Convergence (Biotech, Blockchain, Quantum)')}
-                </SelectItem>
-                <SelectItem value="KI Infrastruktur & Energie">
-                  {getLocalizedText('KI Infrastruktur & Energie', 'AI Infrastructure & Energy')}
+                <SelectItem value="Deep Tech">Deep Tech</SelectItem>
+                <SelectItem value="Andere">
+                  {getLocalizedText('Andere', 'Other')}
                 </SelectItem>
               </SelectContent>
             </Select>
