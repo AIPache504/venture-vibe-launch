@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Logo } from '@/components/Logo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
@@ -55,12 +56,6 @@ const Index = () => {
                 <Linkedin className="w-5 h-5" aria-hidden="true" />
                 <span>{language === 'de' ? 'Folge uns auf LinkedIn' : 'Follow us on LinkedIn'}</span>
               </a>
-              
-              <Link to="/contact">
-                <Button variant="outline">
-                  {language === 'de' ? 'Kontakt' : 'Contact'}
-                </Button>
-              </Link>
             </div>
           </section>
 
