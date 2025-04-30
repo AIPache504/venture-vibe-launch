@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState } from 'react';
 
 type Language = 'en' | 'de';
@@ -18,7 +19,7 @@ type Translations = {
 const translations: Translations = {
   en: {
     title: "MAY VENTURES",
-    subtitle: "We invest in future technology leaders from our home region.",
+    subtitle: "We Invest In European Ki Pioneers & Technology Leaders From Our Home Country",
     stayTuned: "Every business and every project starts small. Something exciting is in the works. Stay tuned for updates.",
     notifyMe: "Notify Me",
     emailPlaceholder: "Enter your email",
@@ -28,7 +29,7 @@ const translations: Translations = {
   },
   de: {
     title: "MAY VENTURES",
-    subtitle: "Wir investieren in zukünftige Technologieführer aus unserer Heimatregion",
+    subtitle: "Wir investieren in europäische KI-Pioniere und Technologieführer aus unserem Heimatland",
     stayTuned: "Jedes Unternehmen und jedes Projekt fängt klein an. Etwas Aufregendes ist in Arbeit. Stay tuned.",
     notifyMe: "Benachrichtigen",
     emailPlaceholder: "E-Mail eingeben",
